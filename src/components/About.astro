@@ -1,0 +1,292 @@
+---
+const bullets = [
+  'Performance-first development (95+ Lighthouse)',
+  'SEO-ready from day one',
+  'Responsive across all devices',
+  'Affordable for small businesses',
+];
+---
+
+<section id="about" class="about-section">
+  <div class="section-inner">
+
+    <!-- Left: Text -->
+    <div class="about-text reveal">
+      <span class="section-label">About Me</span>
+      <h2 class="section-title">Developer from Rajkot.<br />Building for the world.</h2>
+
+      <p class="para">
+        I'm Snehal — a frontend developer who builds modern websites for businesses that want to grow online.
+        I work with React, TypeScript, and Astro to ship fast, clean, and conversion-focused sites.
+      </p>
+      <p class="para">
+        I recently shipped a full website for Bronte Movers, and I've built AI-powered tools like CompetitorIQ
+        using the Claude API. My goal is to help businesses — especially small and local ones — compete online
+        with a website that actually works.
+      </p>
+      <p class="para">
+        Based in Rajkot, I work with clients across India and internationally. I reply fast, I ship fast,
+        and I don't disappear after handoff.
+      </p>
+
+      <ul class="bullets">
+        {bullets.map((b) => (
+          <li class="bullet-item">
+            <span class="check-icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <circle cx="8" cy="8" r="8" fill="rgba(16,185,129,0.15)"/>
+                <path d="M5 8l2 2 4-4" stroke="#10B981" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span>{b}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- Right: Info card -->
+    <div class="about-card reveal delay-200">
+      <div class="card-gradient-border">
+        <div class="card-inner">
+
+          <div class="location-row">
+            <span class="flag">🇮🇳</span>
+            <span class="location-text">Rajkot, India</span>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="status-row">
+            <span class="status-dot"></span>
+            <span class="status-text">Available for projects</span>
+          </div>
+
+          <p class="capacity-text">Currently taking on 2 new clients</p>
+
+          <div class="divider"></div>
+
+          <div class="stack-row">
+            <span class="stack-label">Stack</span>
+            <div class="stack-tags">
+              {['React', 'TypeScript', 'Astro', 'TailwindCSS', 'Claude AI'].map((t) => (
+                <span class="stack-tag">{t}</span>
+              ))}
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <a
+            href="https://cal.com/snehal-kanzariya"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="book-btn"
+          >
+            Book a Free Call
+          </a>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .about-section {
+    padding: 100px 1.5rem;
+    background: #0F172A;
+  }
+
+  .section-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .section-label {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #10B981;
+    margin-bottom: 14px;
+  }
+
+  .section-title {
+    font-family: 'Sora', sans-serif;
+    font-size: clamp(26px, 3.5vw, 38px);
+    font-weight: 700;
+    color: #F8FAFC;
+    line-height: 1.2;
+    margin-bottom: 28px;
+  }
+
+  .para {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    color: #94A3B8;
+    line-height: 1.75;
+    margin-bottom: 18px;
+  }
+
+  .bullets {
+    list-style: none;
+    padding: 0;
+    margin-top: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .bullet-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    color: #F8FAFC;
+    font-weight: 500;
+  }
+
+  .check-icon { flex-shrink: 0; }
+
+  /* Right card */
+  .about-card {
+    position: sticky;
+    top: 100px;
+  }
+
+  .card-gradient-border {
+    background: linear-gradient(135deg, rgba(99,102,241,0.4), rgba(16,185,129,0.3), rgba(99,102,241,0.1));
+    border-radius: 14px;
+    padding: 2px;
+  }
+
+  .card-inner {
+    background: #1E293B;
+    border-radius: 12px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .location-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 20px;
+  }
+
+  .flag { font-size: 24px; }
+
+  .location-text {
+    font-family: 'Sora', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #F8FAFC;
+  }
+
+  .divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.07);
+    margin: 20px 0;
+  }
+
+  .status-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+
+  .status-dot {
+    width: 10px; height: 10px;
+    background: #10B981;
+    border-radius: 50%;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+    animation: statusPulse 2s ease-in-out infinite;
+    flex-shrink: 0;
+  }
+
+  @keyframes statusPulse {
+    0%, 100% { box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2); }
+    50% { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0.05); }
+  }
+
+  .status-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #10B981;
+  }
+
+  .capacity-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #94A3B8;
+    padding-left: 20px;
+  }
+
+  .stack-row {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .stack-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #94A3B8;
+  }
+
+  .stack-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .stack-tag {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: #818CF8;
+    background: rgba(99, 102, 241, 0.1);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    border-radius: 6px;
+    padding: 4px 10px;
+  }
+
+  .book-btn {
+    display: block;
+    background: #6366F1;
+    color: #fff;
+    text-align: center;
+    padding: 13px;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+    margin-top: 4px;
+  }
+  .book-btn:hover { background: #4F46E5; transform: translateY(-1px); }
+
+  @media (max-width: 960px) {
+    .section-inner {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+    .about-card { position: static; }
+  }
+</style>

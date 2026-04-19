@@ -1,0 +1,274 @@
+---
+const projects = [
+  {
+    featured: true,
+    badge: 'Client Project',
+    badgeColor: 'emerald',
+    title: 'Bronte Movers',
+    description:
+      'Professional website for a moving company. Built for performance and local SEO — so customers find them first.',
+    tech: ['React', 'Astro', 'TailwindCSS'],
+    link: null,
+    linkLabel: 'View Project →',
+    gradient: 'linear-gradient(135deg, rgba(99,102,241,0.15) 0%, rgba(16,185,129,0.1) 100%)',
+    delay: 'delay-100',
+  },
+  {
+    featured: false,
+    badge: 'AI Tool',
+    badgeColor: 'indigo',
+    title: 'CompetitorIQ',
+    description:
+      'Paste any company name, get instant AI-powered SWOT analysis, feature comparison, and market positioning. Built with Wikipedia, Wikidata, HackerNews, GitHub & DuckDuckGo API.',
+    tech: ['React', 'Claude AI', 'TypeScript'],
+    link: 'https://competitor-analysis-tool-roan.vercel.app/',
+    linkLabel: 'View Live →',
+    gradient: 'linear-gradient(135deg, rgba(99,102,241,0.18) 0%, rgba(99,102,241,0.05) 100%)',
+    delay: 'delay-200',
+  },
+  {
+    featured: false,
+    badge: 'SaaS Tool',
+    badgeColor: 'purple',
+    title: 'Resume Builder',
+    description:
+      'Create professional resumes in minutes. Form-based builder with PDF export and multiple clean templates.',
+    tech: ['React', 'TypeScript', 'PDF Export'],
+    link: 'https://resume-builder-lovat-mu.vercel.app/',
+    linkLabel: 'View Live →',
+    gradient: 'linear-gradient(135deg, rgba(139,92,246,0.15) 0%, rgba(99,102,241,0.08) 100%)',
+    delay: 'delay-300',
+  },
+  {
+    featured: false,
+    badge: 'Web App',
+    badgeColor: 'amber',
+    title: 'NutriFit',
+    description:
+      'Nutrition and fitness tracking app. Log meals, track calories, plan workouts — all in a clean, fast web interface.',
+    tech: ['React', 'TypeScript', 'Tailwind'],
+    link: 'https://nutri-fit-iota.vercel.app/',
+    linkLabel: 'View Live →',
+    gradient: 'linear-gradient(135deg, rgba(245,158,11,0.12) 0%, rgba(99,102,241,0.08) 100%)',
+    delay: 'delay-400',
+  },
+];
+
+const badgeStyles: Record<string, string> = {
+  emerald: 'background:rgba(16,185,129,0.15);color:#10B981;border:1px solid rgba(16,185,129,0.3);',
+  indigo: 'background:rgba(99,102,241,0.15);color:#818CF8;border:1px solid rgba(99,102,241,0.3);',
+  purple: 'background:rgba(139,92,246,0.15);color:#A78BFA;border:1px solid rgba(139,92,246,0.3);',
+  amber: 'background:rgba(245,158,11,0.15);color:#FCD34D;border:1px solid rgba(245,158,11,0.3);',
+};
+---
+
+<section id="projects" class="projects-section">
+  <div class="section-inner">
+
+    <div class="section-header reveal">
+      <span class="section-label">My Work</span>
+      <h2 class="section-title">Projects that actually shipped</h2>
+    </div>
+
+    <div class="projects-grid">
+      {projects.map((p) => (
+        <div
+          class={`project-card reveal ${p.delay} ${p.featured ? 'featured' : ''}`}
+          style={`background:${p.gradient};`}
+        >
+          <!-- Card header gradient strip -->
+          <div class="card-strip" style={`background:${p.gradient};`}></div>
+
+          <div class="card-body">
+            <div class="card-top">
+              <span class="badge" style={badgeStyles[p.badgeColor]}>{p.badge}</span>
+              {p.featured && <span class="featured-tag">Featured</span>}
+            </div>
+
+            <h3 class="card-title">{p.title}</h3>
+            <p class="card-desc">{p.description}</p>
+
+            <div class="tech-row">
+              {p.tech.map((t) => (
+                <span class="tech-tag">{t}</span>
+              ))}
+            </div>
+
+            <div class="card-footer">
+              {p.link ? (
+                <a href={p.link} target="_blank" rel="noopener noreferrer" class="card-link">
+                  {p.linkLabel}
+                </a>
+              ) : (
+                <span class="card-link-disabled">{p.linkLabel}</span>
+              )}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .projects-section {
+    padding: 100px 1.5rem;
+    background: #1E293B;
+  }
+
+  .section-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .section-label {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #10B981;
+    margin-bottom: 14px;
+  }
+
+  .section-title {
+    font-family: 'Sora', sans-serif;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 700;
+    color: #F8FAFC;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .project-card {
+    background: #0F172A;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+    border-color: rgba(99, 102, 241, 0.35);
+  }
+
+  .project-card.featured {
+    border-color: rgba(99, 102, 241, 0.3);
+    box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.15), 0 4px 24px rgba(99, 102, 241, 0.1);
+  }
+
+  .card-strip {
+    height: 4px;
+    width: 100%;
+  }
+
+  .card-body {
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1;
+  }
+
+  .card-top {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .badge {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 100px;
+  }
+
+  .featured-tag {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: #6366F1;
+    background: rgba(99, 102, 241, 0.1);
+    border: 1px solid rgba(99, 102, 241, 0.25);
+    border-radius: 100px;
+    padding: 3px 10px;
+  }
+
+  .card-title {
+    font-family: 'Sora', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #F8FAFC;
+  }
+
+  .card-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: #94A3B8;
+    line-height: 1.65;
+    flex: 1;
+  }
+
+  .tech-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 4px;
+  }
+
+  .tech-tag {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: #94A3B8;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+    padding: 3px 10px;
+  }
+
+  .card-footer {
+    margin-top: 8px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .card-link {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #6366F1;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .card-link:hover { color: #818CF8; }
+
+  .card-link-disabled {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #475569;
+    cursor: default;
+  }
+
+  @media (max-width: 700px) {
+    .projects-grid { grid-template-columns: 1fr; }
+  }
+</style>

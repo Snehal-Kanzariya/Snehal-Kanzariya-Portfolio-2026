@@ -1,0 +1,174 @@
+---
+const services = [
+  {
+    icon: 'globe',
+    title: 'Business Websites',
+    description:
+      'Modern, fast websites that rank on Google and convert visitors into customers. Built with Astro for maximum performance.',
+    tag: 'From ₹15,000 / $199',
+    delay: 'delay-100',
+  },
+  {
+    icon: 'cursor',
+    title: 'High-Converting Landing Pages',
+    description:
+      'Single-page sites built to get leads. Perfect for product launches, local businesses, or campaigns.',
+    tag: 'From ₹10,000 / $149',
+    delay: 'delay-200',
+  },
+  {
+    icon: 'sparkle',
+    title: 'AI Web Tools & SaaS',
+    description:
+      'Custom AI-powered web apps — competitor trackers, automation tools, dashboards. Built with Claude API + React.',
+    tag: 'From ₹30,000 / $399',
+    delay: 'delay-300',
+  },
+];
+---
+
+<section id="services" class="services-section">
+  <div class="section-inner">
+
+    <div class="section-header reveal">
+      <span class="section-label">What I Build</span>
+      <h2 class="section-title">Services that grow your business</h2>
+    </div>
+
+    <div class="cards-grid">
+      {services.map((s) => (
+        <div class={`service-card reveal ${s.delay}`}>
+          <div class="card-icon">
+            {s.icon === 'globe' && (
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#6366F1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="2" y1="12" x2="22" y2="12"/>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+              </svg>
+            )}
+            {s.icon === 'cursor' && (
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#6366F1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 3l14 9-7 1-4 7-3-17z"/>
+              </svg>
+            )}
+            {s.icon === 'sparkle' && (
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#6366F1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6L12 2z"/>
+              </svg>
+            )}
+          </div>
+          <h3 class="card-title">{s.title}</h3>
+          <p class="card-desc">{s.description}</p>
+          <div class="card-tag">{s.tag}</div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .services-section {
+    padding: 100px 1.5rem;
+    background: #0F172A;
+  }
+
+  .section-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .section-label {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #10B981;
+    margin-bottom: 14px;
+  }
+
+  .section-title {
+    font-family: 'Sora', sans-serif;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 700;
+    color: #F8FAFC;
+  }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .service-card {
+    background: #1E293B;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 12px;
+    padding: 36px 28px;
+    transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .service-card:hover {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 0 8px 40px rgba(99, 102, 241, 0.18);
+    border-color: rgba(99, 102, 241, 0.4);
+  }
+
+  .card-icon {
+    width: 52px; height: 52px;
+    background: rgba(99, 102, 241, 0.1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .card-title {
+    font-family: 'Sora', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #F8FAFC;
+    line-height: 1.25;
+  }
+
+  .card-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    color: #94A3B8;
+    line-height: 1.65;
+    flex: 1;
+  }
+
+  .card-tag {
+    display: inline-block;
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.25);
+    border-radius: 100px;
+    padding: 5px 14px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #10B981;
+    width: fit-content;
+  }
+
+  @media (max-width: 900px) {
+    .cards-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (min-width: 640px) and (max-width: 900px) {
+    .cards-grid { grid-template-columns: repeat(2, 1fr); }
+    .service-card:last-child { grid-column: 1 / -1; max-width: 380px; margin: 0 auto; width: 100%; }
+  }
+</style>

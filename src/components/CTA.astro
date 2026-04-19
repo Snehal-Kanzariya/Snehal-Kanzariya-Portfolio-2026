@@ -1,0 +1,225 @@
+---
+---
+
+<section class="cta-banner">
+  <!-- ambient glows -->
+  <div class="glow glow-left"  aria-hidden="true"></div>
+  <div class="glow glow-right" aria-hidden="true"></div>
+
+  <!-- thin top accent line -->
+  <div class="top-line" aria-hidden="true"></div>
+
+  <div class="cta-inner reveal">
+
+    <span class="eyebrow">
+      <span class="eyebrow-dot" aria-hidden="true"></span>
+      Free 15-min discovery call
+    </span>
+
+    <h2 class="heading">
+      Have a project in mind?<br />
+      <span class="heading-accent">Let's build it together.</span>
+    </h2>
+
+    <p class="subtext">
+      No pitch. No pressure. Just a conversation about<br class="br-desktop" />
+      what you need and how I can help.
+    </p>
+
+    <div class="btn-row">
+      <a
+        href="https://cal.com/snehal-kanzariya"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn-primary"
+      >
+        Book a Call
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="7" y1="17" x2="17" y2="7"/>
+          <polyline points="7 7 17 7 17 17"/>
+        </svg>
+      </a>
+
+      <a href="mailto:Snehal.kanzariya02@gmail.com" class="btn-secondary">
+        Or send an email
+      </a>
+    </div>
+
+    <p class="reply-note">↩ I reply within 24 hours. Usually much faster.</p>
+
+  </div>
+</section>
+
+<style>
+  .cta-banner {
+    position: relative;
+    background: #080F1D;
+    padding: 112px 1.5rem 104px;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  /* Top gradient accent line */
+  .top-line {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(99, 102, 241, 0.6) 30%,
+      rgba(16, 185, 129, 0.5) 70%,
+      transparent 100%
+    );
+  }
+
+  /* Ambient radial glows */
+  .glow {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    filter: blur(80px);
+  }
+  .glow-left {
+    width: 500px; height: 400px;
+    background: rgba(99, 102, 241, 0.08);
+    top: -100px; left: -100px;
+  }
+  .glow-right {
+    width: 400px; height: 400px;
+    background: rgba(16, 185, 129, 0.06);
+    bottom: -80px; right: -80px;
+  }
+
+  .cta-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 640px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  /* Eyebrow pill */
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #10B981;
+    background: rgba(16, 185, 129, 0.08);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    border-radius: 100px;
+    padding: 6px 14px;
+  }
+
+  .eyebrow-dot {
+    width: 6px; height: 6px;
+    background: #10B981;
+    border-radius: 50%;
+    animation: blink-dot 1.8s ease-in-out infinite;
+  }
+
+  @keyframes blink-dot {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.3; }
+  }
+
+  /* Heading */
+  .heading {
+    font-family: 'Sora', sans-serif;
+    font-size: clamp(32px, 5vw, 54px);
+    font-weight: 700;
+    color: #F8FAFC;
+    line-height: 1.12;
+  }
+
+  .heading-accent {
+    background: linear-gradient(135deg, #818CF8 0%, #6366F1 50%, #10B981 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Subtext */
+  .subtext {
+    font-family: 'Inter', sans-serif;
+    font-size: 17px;
+    color: #64748B;
+    line-height: 1.7;
+  }
+
+  .br-desktop { display: block; }
+
+  /* Button row */
+  .btn-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 4px;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #6366F1;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 14px 28px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.22s, box-shadow 0.22s;
+    box-shadow: 0 4px 16px rgba(99, 102, 241, 0.25);
+  }
+  .btn-primary:hover {
+    background: #4F46E5;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 32px rgba(99, 102, 241, 0.45);
+  }
+  .btn-primary svg { transition: transform 0.2s; }
+  .btn-primary:hover svg { transform: translate(2px, -2px); }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: #64748B;
+    text-decoration: none;
+    padding: 14px 4px;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .btn-secondary:hover {
+    color: #F8FAFC;
+    border-bottom-color: rgba(99, 102, 241, 0.5);
+  }
+
+  /* Reply note */
+  .reply-note {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #334155;
+    letter-spacing: 0.01em;
+  }
+
+  @media (max-width: 600px) {
+    .cta-banner { padding: 80px 1.5rem; }
+    .subtext { font-size: 15px; }
+    .br-desktop { display: none; }
+  }
+</style>

@@ -1,0 +1,81 @@
+---
+const stats = [
+  { value: '4+', label: 'Projects Shipped', desc: 'Real clients, real results' },
+  { value: '2+', label: 'Years Building', desc: 'React, Astro & TypeScript' },
+  { value: '3', label: 'Countries Reached', desc: 'India, US, and beyond' },
+  { value: '100', label: 'PageSpeed Score', desc: 'Lighthouse performance' },
+];
+---
+
+<section id="trust" class="trust-bar reveal">
+  <div class="trust-inner">
+    {stats.map((s, i) => (
+      <div class={`stat-item reveal delay-${(i + 1) * 100}`}>
+        <span class="stat-value">{s.value}</span>
+        <span class="stat-label">{s.label}</span>
+        <span class="stat-desc">{s.desc}</span>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .trust-bar {
+    background: #1E293B;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 48px 1.5rem;
+  }
+
+  .trust-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 4px;
+  }
+
+  .stat-value {
+    font-family: 'Sora', sans-serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: #6366F1;
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #F8FAFC;
+    margin-top: 6px;
+  }
+
+  .stat-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #94A3B8;
+  }
+
+  @media (max-width: 768px) {
+    .trust-inner {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .trust-inner {
+      grid-template-columns: 1fr 1fr;
+    }
+    .stat-value { font-size: 32px; }
+  }
+</style>
