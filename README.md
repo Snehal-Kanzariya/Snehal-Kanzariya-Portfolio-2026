@@ -1,30 +1,43 @@
-# Astro Starter Kit: Portfolio
+# Snehal Kanzariya — Portfolio
 
-```sh
-npm create astro@latest -- --template portfolio
-```
+Personal portfolio website for Snehal Kanzariya, a frontend developer from India. Built with Astro, TailwindCSS, and TypeScript.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/portfolio)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/portfolio)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/portfolio/devcontainer.json)
+## About
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+I build modern websites and AI-powered web tools for businesses. Specializing in React, TypeScript, Astro, TailwindCSS, and Claude AI integrations.
 
-![portfolio](https://user-images.githubusercontent.com/357379/210779178-a98f0fb7-6b1a-4068-894c-8e1403e26654.jpg)
+- **Email:** Snehal.kanzariya02@gmail.com
+- **GitHub:** https://github.com/Snehal-Kanzariya
+- **LinkedIn:** https://linkedin.com/in/snehal-kanzariya
+- **Instagram:** https://www.instagram.com/snehal.kanzariya
+- **Location:** Rajkot, Gujarat, India
 
-## 🧞 Commands
+## Projects
 
-All commands are run from the root of the project, from a terminal:
+| Project            | Description                                                        | Live                                                      |
+| :----------------- | :----------------------------------------------------------------- | :-------------------------------------------------------- |
+| **Bronte Movers**  | Professional moving company website                                | —                                                         |
+| **CompetitorIQ**   | AI-powered competitor analysis platform (SWOT, market positioning) | [Live](https://competitor-analysis-tool-roan.vercel.app/) |
+| **Resume Builder** | React app with form-based input, PDF export, multiple templates    | [Live](https://resume-builder-lovat-mu.vercel.app/)       |
+| **NutriFit**       | Nutrition and fitness tracking web app                             | [Live](https://nutri-fit-iota.vercel.app/)                |
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## Tech Stack
 
-## 👀 Want to learn more?
+- **Framework:** Astro
+- **Styling:** TailwindCSS
+- **Language:** TypeScript
+- **Fonts:** Inter (body), Sora (headings)
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## Commands
+
+| Command           | Action                                     |
+| :---------------- | :----------------------------------------- |
+| `npm install`     | Install dependencies                       |
+| `npm run dev`     | Start local dev server at `localhost:4321` |
+| `npm run build`   | Build production site to `./dist/`         |
+| `npm run preview` | Preview build locally before deploying     |
+
+## Pricing
+
+- Indian clients: 15,000INR – 50,000INR
+- International clients: 199USD – 999USD
