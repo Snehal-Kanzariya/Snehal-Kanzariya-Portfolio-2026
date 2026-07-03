@@ -1,48 +1,67 @@
 ---
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/mpqknkob";
 ---
 
 <section id="contact" class="contact-section">
   <div class="section-inner">
-
     <div class="section-header reveal">
       <h2 class="section-title">Let's build something.</h2>
       <p class="section-sub">
-        Have a project in mind? Book a free 15-minute call. No pressure, just a conversation about what you need.
+        Have a project in mind? Fill out the form and I'll get back to you
+        within 24 hours.
       </p>
     </div>
 
     <div class="contact-grid">
+      <!-- Contact form -->
+      <div class="form-col reveal delay-100">
+        <h3 class="col-title">Send a message</h3>
 
-      <!-- Left: Cal.com embed -->
-      <div class="cal-col reveal delay-100">
-        <h3 class="col-title">Book a call</h3>
-        <div class="cal-placeholder">
-          <div class="cal-icon" aria-hidden="true">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#6366F1" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-              <line x1="16" y1="2" x2="16" y2="6"/>
-              <line x1="8" y1="2" x2="8" y2="6"/>
-              <line x1="3" y1="10" x2="21" y2="10"/>
-            </svg>
+        <!-- Feedback region: screen readers announce changes here -->
+        <div id="formFeedback" aria-live="polite">
+          <div id="formSuccess" class="form-success" hidden>
+            <div class="success-icon" aria-hidden="true">✓</div>
+            <p class="success-title">Message sent!</p>
+            <p class="success-sub">
+              I'll reply within 24 hours. Usually much faster.
+            </p>
           </div>
-          <p class="cal-placeholder-text">Free 15-minute discovery call</p>
-          <p class="cal-placeholder-sub">No pressure. Just a conversation about what you need and how I can help.</p>
-          <a
-            href="https://cal.com/snehal-kanzariya"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="cal-btn"
-          >
-            Book a Call on Cal.com →
-          </a>
+
+          <div id="formError" class="form-error" hidden>
+            <p>
+              Something went wrong — please try again or DM me on
+              <a
+                href="https://linkedin.com/in/snehal-kanzariya"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="error-link">LinkedIn</a
+              >.
+            </p>
+          </div>
         </div>
-      </div>
 
-      <!-- Right: Contact form -->
-      <div class="form-col reveal delay-200">
-        <h3 class="col-title">Or send a message</h3>
+        <form
+          class="contact-form"
+          id="contactForm"
+          action={FORMSPREE_ENDPOINT}
+          method="POST"
+          novalidate
+        >
+          <!-- Formspree: custom email subject (interpolates the {name} field) -->
+          <input
+            type="hidden"
+            name="_subject"
+            value="New portfolio inquiry from {name}"
+          />
+          <!-- Formspree: honeypot anti-spam (must stay hidden & empty) -->
+          <input
+            type="text"
+            name="_gotcha"
+            style="display:none"
+            tabindex="-1"
+            autocomplete="off"
+          />
 
-        <form class="contact-form" id="contactForm" novalidate>
           <div class="field-group">
             <label for="name" class="field-label">Name</label>
             <input
@@ -71,12 +90,11 @@
             <label for="project" class="field-label">Project description</label>
             <textarea
               id="project"
-              name="project"
+              name="message"
               placeholder="Tell me about your project..."
               class="field-input field-textarea"
               rows="4"
-              required
-            ></textarea>
+              required></textarea>
           </div>
 
           <div class="field-group">
@@ -89,56 +107,103 @@
             </select>
           </div>
 
-          <button type="submit" class="submit-btn">
+          <button
+            type="submit"
+            id="submitBtn"
+            class="submit-btn"
+            aria-disabled="false"
+          >
             Send Message
           </button>
 
-          <p class="reply-note">I reply within 24 hours. Usually much faster.</p>
+          <p class="reply-note">
+            I reply within 24 hours. Usually much faster.
+          </p>
         </form>
       </div>
-
     </div>
 
     <!-- Social links -->
     <div class="social-row reveal delay-300">
-      <a href="mailto:Snehal.kanzariya02@gmail.com" class="social-link" aria-label="Email">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-          <polyline points="22,6 12,13 2,6"/>
-        </svg>
-        <span>Email</span>
-      </a>
-      <a href="https://www.instagram.com/snehal.kanzariya" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+      <a
+        href="https://www.instagram.com/snehal.kanzariya"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="social-link"
+        aria-label="Instagram"
+      >
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
         </svg>
         <span>Instagram</span>
       </a>
-      <a href="https://github.com/Snehal-Kanzariya" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+      <a
+        href="https://github.com/Snehal-Kanzariya"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="social-link"
+        aria-label="GitHub"
+      >
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path
+            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+          ></path>
         </svg>
         <span>GitHub</span>
       </a>
-      <a href="https://linkedin.com/in/snehal-kanzariya" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
-          <rect x="2" y="9" width="4" height="12"/>
-          <circle cx="4" cy="4" r="2"/>
+      <a
+        href="https://linkedin.com/in/snehal-kanzariya"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="social-link"
+        aria-label="LinkedIn"
+      >
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path
+            d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+          ></path>
+          <rect x="2" y="9" width="4" height="12"></rect>
+          <circle cx="4" cy="4" r="2"></circle>
         </svg>
         <span>LinkedIn</span>
       </a>
     </div>
-
   </div>
 </section>
 
 <style>
   .contact-section {
     padding: 100px 1.5rem;
-    background: #0A1120;
+    background: #0a1120;
   }
 
   .section-inner {
@@ -152,93 +217,112 @@
   }
 
   .section-title {
-    font-family: 'Sora', sans-serif;
+    font-family: "Sora", sans-serif;
     font-size: clamp(32px, 4.5vw, 52px);
     font-weight: 700;
-    color: #F8FAFC;
+    color: #f8fafc;
     margin-bottom: 16px;
   }
 
   .section-sub {
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
     font-size: 18px;
-    color: #94A3B8;
+    color: #94a3b8;
     max-width: 520px;
     margin: 0 auto;
     line-height: 1.65;
   }
 
   .contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 48px;
-    margin-bottom: 64px;
+    max-width: 640px;
+    margin: 0 auto 64px;
   }
 
   .col-title {
-    font-family: 'Sora', sans-serif;
+    font-family: "Sora", sans-serif;
     font-size: 20px;
     font-weight: 700;
-    color: #F8FAFC;
+    color: #f8fafc;
     margin-bottom: 24px;
   }
 
-  /* Cal placeholder */
-  .cal-placeholder {
-    background: #1E293B;
-    border: 1px solid rgba(255, 255, 255, 0.07);
-    border-radius: 12px;
-    padding: 48px 32px;
-    text-align: center;
+  /* ── Success / Error states ───────────────── */
+  .form-success,
+  .form-error {
+    border-radius: 10px;
+    padding: 28px 24px;
+    margin-bottom: 24px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 14px;
-    min-height: 340px;
-    justify-content: center;
+    text-align: center;
+    gap: 10px;
+    animation: fadeInUp 0.35s ease both;
   }
 
-  .cal-icon {
-    width: 72px; height: 72px;
-    background: rgba(99, 102, 241, 0.1);
-    border-radius: 16px;
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .form-success {
+    background: rgba(16, 185, 129, 0.08);
+    border: 1px solid rgba(16, 185, 129, 0.25);
+  }
+
+  .success-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(16, 185, 129, 0.15);
+    border: 1.5px solid rgba(16, 185, 129, 0.4);
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 8px;
+    font-size: 22px;
+    color: #10b981;
+    line-height: 1;
   }
 
-  .cal-placeholder-text {
-    font-family: 'Sora', sans-serif;
+  .success-title {
+    font-family: "Sora", sans-serif;
     font-size: 18px;
     font-weight: 700;
-    color: #F8FAFC;
+    color: #10b981;
   }
 
-  .cal-placeholder-sub {
-    font-family: 'Inter', sans-serif;
+  .success-sub {
+    font-family: "Inter", sans-serif;
     font-size: 14px;
-    color: #94A3B8;
-    max-width: 280px;
+    color: #94a3b8;
     line-height: 1.6;
   }
 
-  .cal-btn {
-    display: inline-block;
-    background: #6366F1;
-    color: #fff;
-    padding: 13px 24px;
-    border-radius: 8px;
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
-    font-size: 15px;
-    text-decoration: none;
-    transition: background 0.2s, transform 0.2s;
-    margin-top: 8px;
+  .form-error {
+    background: rgba(239, 68, 68, 0.06);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    color: #fca5a5;
+    line-height: 1.6;
   }
-  .cal-btn:hover { background: #4F46E5; transform: translateY(-1px); }
 
-  /* Form */
+  .error-link {
+    color: #818cf8;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .error-link:hover {
+    color: #a5b4fc;
+  }
+
+  /* ── Form ────────────────────────────────── */
   .contact-form {
     display: flex;
     flex-direction: column;
@@ -252,33 +336,40 @@
   }
 
   .field-label {
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
     font-size: 13px;
     font-weight: 500;
-    color: #94A3B8;
+    color: #94a3b8;
   }
 
   .field-input {
-    background: #1E293B;
+    background: #1e293b;
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 8px;
     padding: 12px 16px;
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
     font-size: 15px;
-    color: #F8FAFC;
-    transition: border-color 0.2s, box-shadow 0.2s;
+    color: #f8fafc;
+    transition:
+      border-color 0.2s,
+      box-shadow 0.2s;
     outline: none;
     width: 100%;
   }
 
-  .field-input::placeholder { color: #475569; }
+  .field-input::placeholder {
+    color: #475569;
+  }
 
   .field-input:focus {
-    border-color: #6366F1;
+    border-color: #6366f1;
     box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
   }
 
-  .field-textarea { resize: vertical; min-height: 100px; }
+  .field-textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
 
   .field-select {
     cursor: pointer;
@@ -289,31 +380,45 @@
     padding-right: 36px;
   }
 
-  .field-select option { background: #1E293B; color: #F8FAFC; }
+  .field-select option {
+    background: #1e293b;
+    color: #f8fafc;
+  }
 
   .submit-btn {
-    background: #6366F1;
+    background: #6366f1;
     color: #fff;
     border: none;
     border-radius: 8px;
     padding: 14px;
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
     font-weight: 600;
     font-size: 16px;
     cursor: pointer;
-    transition: background 0.2s, transform 0.2s;
+    transition:
+      background 0.2s,
+      transform 0.2s,
+      opacity 0.2s;
     width: 100%;
   }
-  .submit-btn:hover { background: #4F46E5; transform: translateY(-1px); }
+  .submit-btn:hover:not(:disabled) {
+    background: #4f46e5;
+    transform: translateY(-1px);
+  }
+  .submit-btn:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    transform: none;
+  }
 
   .reply-note {
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
     font-size: 13px;
     color: #475569;
     text-align: center;
   }
 
-  /* Social row */
+  /* ── Social row ──────────────────────────── */
   .social-row {
     display: flex;
     align-items: center;
@@ -326,33 +431,59 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    color: #94A3B8;
+    color: #94a3b8;
     text-decoration: none;
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
     font-size: 14px;
     font-weight: 500;
     transition: color 0.2s;
   }
-  .social-link:hover { color: #F8FAFC; }
-
-  @media (max-width: 760px) {
-    .contact-grid { grid-template-columns: 1fr; gap: 32px; }
+  .social-link:hover {
+    color: #f8fafc;
   }
 </style>
 
 <script>
-  const form = document.getElementById('contactForm') as HTMLFormElement;
-  form?.addEventListener('submit', (e) => {
+  const form = document.getElementById("contactForm") as HTMLFormElement;
+  const btn = document.getElementById("submitBtn") as HTMLButtonElement;
+  const success = document.getElementById("formSuccess") as HTMLElement;
+  const error = document.getElementById("formError") as HTMLElement;
+
+  form?.addEventListener("submit", async (e) => {
     e.preventDefault();
-    const btn = form.querySelector('.submit-btn') as HTMLButtonElement;
-    btn.textContent = 'Sent! I\'ll be in touch soon.';
-    btn.style.background = '#10B981';
+
+    // — hide any previous feedback —
+    success.hidden = true;
+    error.hidden = true;
+
+    // — sending state —
     btn.disabled = true;
-    setTimeout(() => {
-      form.reset();
-      btn.textContent = 'Send Message';
-      btn.style.background = '#6366F1';
+    btn.setAttribute("aria-disabled", "true");
+    btn.textContent = "Sending…";
+
+    try {
+      const res = await fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+        headers: { Accept: "application/json" },
+      });
+
+      if (res.ok) {
+        form.hidden = true;
+        success.hidden = false;
+      } else {
+        // Formspree returns error details in JSON
+        error.hidden = false;
+        btn.disabled = false;
+        btn.setAttribute("aria-disabled", "false");
+        btn.textContent = "Send Message";
+      }
+    } catch {
+      // Network failure
+      error.hidden = false;
       btn.disabled = false;
-    }, 4000);
+      btn.setAttribute("aria-disabled", "false");
+      btn.textContent = "Send Message";
+    }
   });
 </script>
