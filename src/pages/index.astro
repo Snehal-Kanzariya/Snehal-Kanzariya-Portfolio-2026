@@ -1,24 +1,486 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Navbar from '../components/Navbar.astro';
-import Hero from '../components/Hero.astro';
-import TrustBar from '../components/TrustBar.astro';
-import Services from '../components/Services.astro';
-import Projects from '../components/Projects.astro';
-import About from '../components/About.astro';
-import Contact from '../components/Contact.astro';
-import CTA from '../components/CTA.astro';
-import Footer from '../components/Footer.astro';
+// Futuristic "2050" home page. Self-contained: does not use Layout.astro or global.css.
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mpqknkob';
+const title = 'Snehal Kanzariya — Web Developer | React, Astro, AI Tools | Rajkot';
+const description = 'I build modern, fast websites for businesses. React, TypeScript, Astro developer from Rajkot. Starting at ₹15,000 / $199.';
+const canonical = 'https://snehal.dev';
+const ogImage = '/og-image.png';
 ---
 
-<Layout>
-  <Navbar />
-  <Hero />
-  <TrustBar />
-  <Services />
-  <Projects />
-  <About />
-  <Contact />
-  <CTA />
-  <Footer />
-</Layout>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content={description} />
+    <meta name="author" content="Snehal Kanzariya" />
+    <meta name="theme-color" content="#04050d" />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" />
+    <title>{title}</title>
+    <style is:global>
+body{margin:0;font-size:17px}
+
+/* Layout: a fixed WebGL globe (beacon on Rajkot) sits behind one left-aligned column; glass panels float over it; mono HUD labels frame each section. Single dark look by choice. */
+:root{
+  --void:#04050d; --deep:#0a0c1f; --panel:rgba(13,16,38,.64); --line:rgba(140,160,255,.17);
+  --fg:#eef0ff; --mute:#959cc6; --ion:#63e6ff; --violet:#9483ff; --flare:#ff8f66;
+  --display:'Unbounded','Trebuchet MS',system-ui,sans-serif;
+  --body:'Outfit','Segoe UI',system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace;
+  --holo:linear-gradient(100deg,var(--ion),var(--violet) 55%,var(--flare));
+  color-scheme:dark;
+}
+html{scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+img{max-width:100%}
+body{background:var(--void);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.6;overflow-x:hidden;
+  background-image:radial-gradient(60rem 40rem at 85% -10%,rgba(148,131,255,.16),transparent 60%),radial-gradient(50rem 36rem at -10% 40%,rgba(99,230,255,.08),transparent 60%)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--void)}
+body::after{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.5;
+  background:repeating-linear-gradient(0deg,rgba(255,255,255,.022) 0 1px,transparent 1px 4px)}
+#space{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.cur{position:fixed;left:0;top:0;width:38px;height:38px;margin:-19px 0 0 -19px;border:1px solid var(--ion);border-radius:50%;z-index:40;pointer-events:none;
+  box-shadow:0 0 18px rgba(99,230,255,.35);transition:width .25s,height .25s,margin .25s,border-color .25s,opacity .3s;opacity:0}
+.cur.on{opacity:.8}.cur.big{width:70px;height:70px;margin:-35px 0 0 -35px;border-color:var(--flare)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--ion);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1160px;margin-inline:auto;padding-left:max(clamp(16px,4vw,40px),env(safe-area-inset-left,0px));padding-right:max(clamp(16px,4vw,40px),env(safe-area-inset-right,0px))}
+header.nav,main,footer{position:relative;z-index:2}
+header.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(4,5,13,.62);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:12px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--display);font-weight:600;font-size:.8rem;letter-spacing:.04em}
+.logo b{display:grid;place-items:center;width:34px;height:34px;border-radius:10px;background:var(--holo);color:var(--void);font-size:.72rem}
+.links{display:flex;gap:26px;font-family:var(--mono);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase}
+.links a{text-decoration:none;color:var(--mute);transition:color .2s}.links a:hover{color:var(--ion)}
+.prog{position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--holo);transform:scaleX(0);transform-origin:0 50%}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;border-radius:999px;font-family:var(--mono);font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;border:1px solid var(--line);background:rgba(255,255,255,.04);color:var(--fg);transition:transform .2s,box-shadow .3s,border-color .3s;will-change:transform}
+.btn:hover{border-color:var(--ion);box-shadow:0 0 28px rgba(99,230,255,.25)}
+.btn.pri{background:var(--holo);color:var(--void);border-color:transparent;font-weight:500}
+.btn.pri:hover{box-shadow:0 0 40px rgba(148,131,255,.55)}
+.btn.sm{padding:9px 16px;font-size:.72rem}
+.mono{font-family:var(--mono);font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+.eye{color:var(--ion);display:block;margin-bottom:14px}
+h1,h2,h3{font-family:var(--display);margin:0;text-wrap:balance}
+/* hero */
+.hero{padding-block:clamp(44px,8vw,96px) clamp(40px,6vw,72px)}
+.status{display:inline-flex;align-items:center;gap:10px;padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:var(--panel);margin-bottom:26px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--ion);box-shadow:0 0 0 0 rgba(99,230,255,.7);animation:ping 2s infinite}
+@keyframes ping{70%{box-shadow:0 0 0 10px rgba(99,230,255,0)}100%{box-shadow:0 0 0 0 rgba(99,230,255,0)}}
+h1{font-weight:800;font-size:clamp(1.9rem,6vw,4.3rem);line-height:1.08;letter-spacing:-.02em;max-width:780px}
+.w{display:inline-block;overflow:hidden;vertical-align:bottom;padding-block:.1em;margin-block:-.1em}
+.w i{display:inline-block;font-style:normal;animation:rise .95s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i)*75ms + 120ms)}
+@keyframes rise{from{transform:translateY(110%) rotate(4deg)}to{transform:none}}
+.g{background:var(--holo);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:rise .95s cubic-bezier(.2,.8,.2,1) both,flow 6s linear infinite alternate}
+@keyframes flow{to{background-position:100% 0}}
+.lede{max-width:54ch;color:var(--mute);font-size:1.1rem;margin:24px 0 30px}
+.cta{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.price{margin-top:18px}
+.hud{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:38px;padding-top:16px;border-top:1px solid var(--line)}
+.hud span b{color:var(--fg);font-weight:500}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:34px}
+.stat{padding:20px;border:1px solid var(--line);border-radius:18px;background:var(--panel);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.stat b{display:block;font-family:var(--display);font-weight:600;font-size:clamp(1.5rem,3vw,2.2rem);line-height:1.1;font-variant-numeric:tabular-nums}
+.stat span{display:block;margin-top:8px;font-weight:500}.stat small{color:var(--mute);font-size:.84rem}
+/* sections */
+section{padding-block:clamp(56px,9vw,120px)}
+.head{margin-bottom:clamp(26px,4vw,46px);max-width:760px}
+h2{font-weight:600;font-size:clamp(1.45rem,3.5vw,2.5rem);line-height:1.15;letter-spacing:-.01em}
+.grid{display:grid;gap:18px}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.card{position:relative;min-width:0;border:1px solid var(--line);border-radius:22px;background:var(--panel);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);overflow:hidden;
+  transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .25s ease-out,border-color .3s,box-shadow .3s;transform-style:preserve-3d}
+.card::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .3s;
+  background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(99,230,255,.16),rgba(148,131,255,.08) 40%,transparent 65%)}
+.card:hover{border-color:rgba(99,230,255,.45);box-shadow:0 24px 70px -30px rgba(99,230,255,.45)}
+.card:hover::after{opacity:1}
+.pad{padding:26px;display:flex;flex-direction:column;gap:12px;height:100%}
+h3{font-weight:600;font-size:1.05rem;line-height:1.3}
+.card p{margin:0;color:var(--mute);font-size:.98rem}
+.from{margin-top:auto;padding-top:10px;color:var(--ion)}
+.art{position:relative;height:132px;overflow:hidden;border-bottom:1px solid var(--line);
+  background:radial-gradient(circle at var(--px,70%) 45%,hsl(var(--h) 95% 66% / .55),transparent 58%),
+  repeating-linear-gradient(90deg,rgba(160,175,255,.09) 0 1px,transparent 1px 26px),repeating-linear-gradient(0deg,rgba(160,175,255,.09) 0 1px,transparent 1px 26px),var(--deep)}
+.art em{position:absolute;left:18px;bottom:-.24em;font:800 4.4rem/1 var(--display);font-style:normal;white-space:nowrap;color:transparent;-webkit-text-stroke:1px hsl(var(--h) 95% 78% / .6);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.card:hover .art em{transform:translateX(-18px)}
+.tag{position:absolute;top:14px;left:18px;padding:4px 10px;border-radius:999px;border:1px solid var(--line);background:rgba(4,5,13,.6);color:var(--fg)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips span{font-family:var(--mono);font-size:.7rem;padding:3px 9px;border-radius:999px;border:1px solid var(--line);color:var(--mute)}
+.live{margin-top:auto;padding-top:8px;font-family:var(--mono);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ion);text-decoration:none}
+.live::after{content:"";position:absolute;inset:0;z-index:1}
+.live span{display:inline-block;transition:transform .25s}.card:hover .live span{transform:translateX(6px)}
+/* about */
+.about{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(20px,4vw,48px);align-items:start}
+.about p{margin:0 0 16px;max-width:60ch;color:var(--mute)}.about p:first-of-type{color:var(--fg);font-size:1.12rem}
+.list{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.list li{display:flex;gap:12px;align-items:baseline}
+.list li::before{content:"";flex:none;width:8px;height:8px;border-radius:2px;background:var(--holo);transform:rotate(45deg) translateY(-1px)}
+.rows{display:grid;gap:10px;margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}
+.rows div{display:flex;justify-content:space-between;gap:12px}.rows b{color:var(--fg);font-weight:500;text-align:right}
+.mq{overflow:hidden;margin-top:clamp(40px,6vw,72px);border-block:1px solid var(--line);padding-block:18px;mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.mq div{display:flex;gap:54px;width:max-content;animation:mq 26s linear infinite}
+.mq span{font:800 clamp(1.4rem,4vw,2.6rem)/1 var(--display);color:transparent;-webkit-text-stroke:1px rgba(238,240,255,.55);white-space:nowrap}
+.mq span:nth-child(odd){-webkit-text-stroke:0;background:var(--holo);-webkit-background-clip:text;background-clip:text}
+@keyframes mq{to{transform:translateX(-50%)}}
+/* contact */
+.final{padding:clamp(28px,6vw,64px);border-radius:28px;border:1px solid var(--line);background:linear-gradient(140deg,rgba(99,230,255,.1),rgba(148,131,255,.1) 50%,rgba(255,143,102,.08)),var(--panel);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.final h2{font-size:clamp(1.6rem,4.6vw,3.2rem);max-width:17ch}
+.final p{color:var(--mute);max-width:46ch;margin:18px 0 28px}
+footer{border-top:1px solid var(--line);padding-block:26px 34px;margin-top:40px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-between}
+/* scroll reveal: starts dim and offset, never hidden */
+.pre{opacity:.18;transform:perspective(900px) translateY(34px) rotateX(8deg)}
+.rv{transition:opacity .8s ease,transform .9s cubic-bezier(.2,.8,.2,1)}
+@media (max-width:900px){.g3{grid-template-columns:repeat(2,minmax(0,1fr))}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.about{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:640px){.links{display:none}.g3{grid-template-columns:minmax(0,1fr)}.logo span{display:none}.stat{padding:16px}.art em{font-size:3.4rem}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}.pre{opacity:1;transform:none}}
+
+.fgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,5vw,56px);align-items:start}
+.form{display:grid;gap:8px}
+.form label{margin-top:8px}
+.form input,.form textarea,.form select{width:100%;padding:13px 14px;border-radius:12px;border:1px solid var(--line);background:rgba(4,5,13,.55);color:var(--fg);font:inherit;font-size:1rem;transition:border-color .2s,box-shadow .2s}
+.form input:focus,.form textarea:focus,.form select:focus{outline:none;border-color:var(--ion);box-shadow:0 0 0 3px rgba(99,230,255,.18)}
+.form textarea{resize:vertical}
+.form button{margin-top:14px;justify-content:center;cursor:pointer}
+.form button[disabled]{opacity:.6;cursor:wait}
+#formMsg{min-height:1.4em;margin:6px 0 0;color:var(--ion)}
+#formMsg.err{color:var(--flare)}
+@media (max-width:900px){.fgrid{grid-template-columns:minmax(0,1fr)}}
+    </style>
+  </head>
+  <body>
+<canvas id="space" aria-hidden="true"></canvas>
+<div class="cur" id="cur" aria-hidden="true"></div>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="#top"><b>SK</b><span>Snehal Kanzariya</span></a>
+    <nav class="links" aria-label="Sections"><a href="#work">Work</a><a href="#services">Services</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
+    <a class="btn pri sm mag" href="#contact">Get in touch</a>
+  </div>
+  <div class="prog" id="prog"></div>
+</header>
+
+<main id="top">
+  <div class="wrap hero">
+    <div class="status mono"><i class="dot"></i>Available for new projects</div>
+    <h1 aria-label="I build websites that bring customers to your business.">
+      <span class="w"><i style="--i:0">I</i></span> <span class="w"><i style="--i:1">build</i></span> <span class="w"><i style="--i:2">websites</i></span> <span class="w"><i style="--i:3">that</i></span> <span class="w"><i style="--i:4">bring</i></span> <span class="w"><i class="g" style="--i:5">customers</i></span> <span class="w"><i style="--i:6">to</i></span> <span class="w"><i style="--i:7">your</i></span> <span class="w"><i style="--i:8">business.</i></span>
+    </h1>
+    <p class="lede">Fast, modern, SEO-ready websites for businesses that want more customers. Built in Rajkot. Shipped worldwide.</p>
+    <div class="cta"><a class="btn pri mag" href="#work">View my work</a><a class="btn mag" href="#contact">Get in touch</a></div>
+    <p class="mono price">Starting at ₹15,000 · $199 for international clients</p>
+    <div class="hud mono">
+      <span>Origin <b>22.3039° N, 70.8022° E</b></span>
+      <span>Rajkot <b id="clock">--:--:--</b> IST</span>
+      <span>Slots <b>2 new clients</b></span>
+    </div>
+    <div class="stats">
+      <div class="stat"><b data-n="6" data-s="+">6+</b><span>Projects shipped</span><small>Real clients, real results</small></div>
+      <div class="stat"><b data-n="2" data-s="+">2+</b><span>Years building</span><small>React, Astro &amp; TypeScript</small></div>
+      <div class="stat"><b data-n="3" data-s="">3</b><span>Countries reached</span><small>India, US, and beyond</small></div>
+      <div class="stat"><b data-n="100" data-s="">100</b><span>PageSpeed score</span><small>Lighthouse performance</small></div>
+    </div>
+  </div>
+
+  <section id="services"><div class="wrap">
+    <div class="head rv"><span class="mono eye" data-d>// What I build</span><h2>Services that grow your business</h2></div>
+    <div class="grid g3">
+      <article class="card tilt rv"><div class="pad"><h3>Business Websites</h3><p>Modern, fast websites that rank on Google and convert visitors into customers. Built with Astro for maximum performance.</p><span class="mono from">From ₹15,000 / $199</span></div></article>
+      <article class="card tilt rv"><div class="pad"><h3>High-Converting Landing Pages</h3><p>Single-page sites built to get leads. Perfect for product launches, local businesses, or campaigns.</p><span class="mono from">From ₹10,000 / $149</span></div></article>
+      <article class="card tilt rv"><div class="pad"><h3>AI Web Tools &amp; SaaS</h3><p>Custom AI-powered web apps: competitor trackers, automation tools, dashboards. Built with Claude API + React.</p><span class="mono from">From ₹30,000 / $399</span></div></article>
+    </div>
+  </div></section>
+
+  <section id="work"><div class="wrap">
+    <div class="head rv"><span class="mono eye" data-d>// My work</span><h2>Projects that actually shipped</h2></div>
+    <div class="grid g3">
+      <article class="card tilt rv"><div class="art" style="--h:190;--px:72%"><span class="tag mono">Client project · Featured</span><em>BRONTE</em></div><div class="pad"><h3>Bronte Movers</h3><p>Professional website for a moving company. Built for performance and local SEO, so customers find them first.</p><div class="chips"><span>React</span><span>Astro</span><span>TailwindCSS</span></div><a class="live" href="https://bronte-movers-cyrvb0ftd-snehalkanzariyas-projects.vercel.app/" target="_blank" rel="noopener">View live <span>→</span></a></div></article>
+      <article class="card tilt rv"><div class="art" style="--h:255;--px:30%"><span class="tag mono">AI tool</span><em>COMPETITOR</em></div><div class="pad"><h3>CompetitorIQ</h3><p>Paste any company name and get an instant AI-powered SWOT analysis, feature comparison, and market positioning.</p><div class="chips"><span>React</span><span>Claude AI</span><span>TypeScript</span></div><a class="live" href="https://competitor-analysis-tool-roan.vercel.app/" target="_blank" rel="noopener">View live <span>→</span></a></div></article>
+      <article class="card tilt rv"><div class="art" style="--h:18;--px:60%"><span class="tag mono">SaaS tool</span><em>RESUME</em></div><div class="pad"><h3>Resume Builder</h3><p>Create professional resumes in minutes. Form-based builder with PDF export and multiple clean templates.</p><div class="chips"><span>React</span><span>TypeScript</span><span>PDF Export</span></div><a class="live" href="https://resume-builder-lovat-mu.vercel.app/" target="_blank" rel="noopener">View live <span>→</span></a></div></article>
+      <article class="card tilt rv"><div class="art" style="--h:150;--px:40%"><span class="tag mono">Web app</span><em>NUTRIFIT</em></div><div class="pad"><h3>NutriFit</h3><p>Nutrition and fitness tracking app. Log meals, track calories, and plan workouts in a clean, fast web interface.</p><div class="chips"><span>React</span><span>TypeScript</span><span>Tailwind</span></div><a class="live" href="https://nutri-fit-iota.vercel.app/" target="_blank" rel="noopener">View live <span>→</span></a></div></article>
+      <article class="card tilt rv"><div class="art" style="--h:38;--px:78%"><span class="tag mono">Demo project</span><em>BREWED</em></div><div class="pad"><h3>Brewed &amp; Co.</h3><p>Premium cafe website with an interactive filterable menu, quick-view product cards, guest reviews, and a reservation CTA.</p><div class="chips"><span>Astro</span><span>React</span><span>TypeScript</span><span>TailwindCSS</span></div><a class="live" href="https://cafe-website-two-gamma.vercel.app/" target="_blank" rel="noopener">View live <span>→</span></a></div></article>
+      <article class="card tilt rv"><div class="art" style="--h:320;--px:26%"><span class="tag mono">Demo project</span><em>LUMIÈRE</em></div><div class="pad"><h3>Lumière Salon</h3><p>Modern beauty &amp; spa website built to showcase services and drive online bookings. Elegant and mobile-first.</p><div class="chips"><span>Astro</span><span>React</span><span>TypeScript</span><span>TailwindCSS</span></div><a class="live" href="https://saloon-demo-website.vercel.app/" target="_blank" rel="noopener">View live <span>→</span></a></div></article>
+    </div>
+  </div></section>
+
+  <section id="about"><div class="wrap">
+    <div class="head rv"><span class="mono eye" data-d>// About me</span><h2>Developer from Rajkot. Building for the world.</h2></div>
+    <div class="about">
+      <div class="rv">
+        <p>I'm Snehal, a frontend developer who builds modern websites for businesses that want to grow online. I work with React, TypeScript, and Astro to ship fast, clean, and conversion-focused sites.</p>
+        <p>I recently shipped a full website for Bronte Movers, and I've built AI-powered tools like CompetitorIQ using the Claude API. My goal is to help businesses, especially small and local ones, compete online with a website that actually works.</p>
+        <p>Based in Rajkot, I work with clients across India and internationally. I reply fast, I ship fast, and I don't disappear after handoff.</p>
+      </div>
+      <div class="card tilt rv"><div class="pad">
+        <ul class="list"><li>Performance-first development (95+ Lighthouse)</li><li>SEO-ready from day one</li><li>Responsive across all devices</li><li>Affordable for small businesses</li></ul>
+        <div class="rows mono"><div>Location <b>Rajkot, India</b></div><div>Status <b>Available for projects</b></div><div>Capacity <b>Taking on 2 new clients</b></div></div>
+      </div></div>
+    </div>
+  </div>
+  <div class="mq" aria-label="Stack: React, TypeScript, Astro, TailwindCSS, Claude AI"><div aria-hidden="true">
+    <span>React</span><span>TypeScript</span><span>Astro</span><span>TailwindCSS</span><span>Claude AI</span><span>React</span><span>TypeScript</span><span>Astro</span><span>TailwindCSS</span><span>Claude AI</span>
+    <span>React</span><span>TypeScript</span><span>Astro</span><span>TailwindCSS</span><span>Claude AI</span><span>React</span><span>TypeScript</span><span>Astro</span><span>TailwindCSS</span><span>Claude AI</span>
+  </div></div></section>
+
+  <section id="contact"><div class="wrap">
+    <div class="final rv">
+      <div class="fgrid">
+        <div>
+          <span class="mono eye" data-d>// Let's work together</span>
+          <h2>Have a project in mind? Let's build it together.</h2>
+          <p>No pitch. No pressure. Just a conversation about what you need and how I can help. I reply within 24 hours, usually much faster.</p>
+          <div class="cta">
+            <a class="btn mag" href="https://linkedin.com/in/snehal-kanzariya" target="_blank" rel="noopener">LinkedIn</a>
+            <a class="btn mag" href="https://github.com/Snehal-Kanzariya" target="_blank" rel="noopener">GitHub</a>
+            <a class="btn mag" href="https://www.instagram.com/snehal.kanzariya" target="_blank" rel="noopener">Instagram</a>
+          </div>
+        </div>
+        <form class="form" id="contactForm" action={FORMSPREE_ENDPOINT} method="POST">
+          <input type="hidden" name="_subject" value={"New portfolio inquiry from {name}"} />
+          <input type="text" name="_gotcha" hidden tabindex="-1" autocomplete="off" />
+          <label class="mono" for="name">Name</label>
+          <input id="name" name="name" type="text" placeholder="Your name" required />
+          <label class="mono" for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="your@email.com" required />
+          <label class="mono" for="project">Project description</label>
+          <textarea id="project" name="message" rows="4" placeholder="Tell me about your project..." required></textarea>
+          <label class="mono" for="budget">Budget</label>
+          <select id="budget" name="budget">
+            <option value="">Select budget range</option>
+            <option value="under-20k">Under ₹20,000</option>
+            <option value="20k-50k">₹20,000 – ₹50,000</option>
+            <option value="international">International — $200+</option>
+          </select>
+          <button class="btn pri" id="submitBtn" type="submit">Send message</button>
+          <p class="mono" id="formMsg" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+  </div></section>
+</main>
+
+<footer><div class="wrap mono"><span>© 2026 Snehal Kanzariya · Rajkot, Gujarat, India</span><span>Frontend developer. Building websites that make your phone ring.</span></div></footer>
+
+
+    <script is:inline>
+(function(){
+  var still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fine = matchMedia('(hover:hover) and (pointer:fine)').matches;
+  var $ = function(s){return Array.prototype.slice.call(document.querySelectorAll(s))};
+  var clamp = function(v,a,b){return Math.min(b,Math.max(a,v))};
+
+  // Rajkot clock
+  var clock = document.getElementById('clock');
+  try{
+    var fmt = new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Kolkata',hour:'2-digit',minute:'2-digit',second:'2-digit'});
+    var tick = function(){clock.textContent = fmt.format(new Date())}; tick(); setInterval(tick,1000);
+  }catch(e){clock.textContent='';}
+
+  // scroll state
+  var prog = document.getElementById('prog'), sp = 0, heroE = 0;
+  function onScroll(){
+    var max = document.documentElement.scrollHeight - innerHeight;
+    sp = max>0 ? clamp(scrollY/max,0,1) : 0;
+    heroE = clamp(scrollY/(innerHeight*0.9),0,1);
+    prog.style.transform = 'scaleX('+sp+')';
+  }
+  addEventListener('scroll',onScroll,{passive:true}); onScroll();
+
+  // decode effect for mono labels
+  var G = '01<>/#*+=_';
+  function decode(el){
+    if(still) return;
+    var s = el.dataset.t || (el.dataset.t = el.textContent), f = 0;
+    (function step(){
+      f++; var k = Math.floor(f/2), out='';
+      for(var i=0;i<s.length;i++) out += (i<k || s[i]===' ') ? s[i] : G[Math.floor(Math.random()*G.length)];
+      el.textContent = out;
+      if(k < s.length) requestAnimationFrame(step); else el.textContent = s;
+    })();
+  }
+
+  // reveal on scroll (elements start dim, never hidden)
+  if(!still && 'IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(!e.isIntersecting) return;
+        e.target.classList.remove('pre'); io.unobserve(e.target);
+        var d = e.target.querySelector('[data-d]'); if(d) decode(d);
+      });
+    },{threshold:.12});
+    $('.rv').forEach(function(el,i){
+      if(el.getBoundingClientRect().top > innerHeight*0.92){ el.classList.add('pre'); el.style.transitionDelay = (i%3)*90+'ms'; }
+      io.observe(el);
+    });
+  }
+
+  // stat count-up
+  if(!still) $('.stat b').forEach(function(el){
+    var n = +el.dataset.n, s = el.dataset.s, t0 = performance.now();
+    (function up(now){
+      var p = clamp((now-t0)/1400,0,1), e = 1-Math.pow(1-p,3);
+      el.textContent = Math.round(n*e)+s;
+      if(p<1) requestAnimationFrame(up);
+    })(t0);
+  });
+
+  // pointer: tilt cards, magnetic buttons, cursor ring
+  var mx = 0, my = 0;
+  if(fine && !still){
+    var cur = document.getElementById('cur'), cx = 0, cy = 0, tx = 0, ty = 0;
+    addEventListener('pointermove',function(e){
+      tx = e.clientX; ty = e.clientY; cur.classList.add('on');
+      mx = e.clientX/innerWidth*2-1; my = e.clientY/innerHeight*2-1;
+    },{passive:true});
+    (function follow(){ cx += (tx-cx)*.18; cy += (ty-cy)*.18; cur.style.transform='translate('+cx+'px,'+cy+'px)'; requestAnimationFrame(follow); })();
+    $('a,button').forEach(function(a){
+      a.addEventListener('pointerenter',function(){cur.classList.add('big')});
+      a.addEventListener('pointerleave',function(){cur.classList.remove('big')});
+    });
+    $('.tilt').forEach(function(c){
+      c.addEventListener('pointermove',function(e){
+        var r = c.getBoundingClientRect(), x = (e.clientX-r.left)/r.width, y = (e.clientY-r.top)/r.height;
+        c.style.setProperty('--ry',((x-.5)*10).toFixed(2)+'deg');
+        c.style.setProperty('--rx',((.5-y)*10).toFixed(2)+'deg');
+        c.style.setProperty('--mx',(x*100).toFixed(1)+'%'); c.style.setProperty('--my',(y*100).toFixed(1)+'%');
+      });
+      c.addEventListener('pointerleave',function(){c.style.setProperty('--rx','0deg');c.style.setProperty('--ry','0deg')});
+    });
+    $('.mag').forEach(function(b){
+      b.addEventListener('pointermove',function(e){
+        var r = b.getBoundingClientRect();
+        b.style.transform = 'translate('+((e.clientX-r.left-r.width/2)*.22).toFixed(1)+'px,'+((e.clientY-r.top-r.height/2)*.3).toFixed(1)+'px)';
+      });
+      b.addEventListener('pointerleave',function(){b.style.transform=''});
+    });
+  }
+
+  // WebGL scene: lattice globe, Rajkot beacon, signal arcs, starfield
+  var canvas = document.getElementById('space');
+  function initGL(){
+  try{
+    var T = THREE, renderer = new T.WebGLRenderer({canvas:canvas,antialias:true,alpha:true});
+    renderer.setPixelRatio(Math.min(devicePixelRatio||1,1.75));
+    var scene = new T.Scene(), cam = new T.PerspectiveCamera(45,1,.1,120); cam.position.z = 6;
+    var R = 1.6, ION = 0x63e6ff, VIO = 0x9483ff, FLA = 0xff8f66;
+    var ll = function(lat,lon,r){
+      var ph = (90-lat)*Math.PI/180, th = (lon+180)*Math.PI/180;
+      return new T.Vector3(-r*Math.sin(ph)*Math.cos(th), r*Math.cos(ph), r*Math.sin(ph)*Math.sin(th));
+    };
+    var globe = new T.Group(), spin = new T.Group(); globe.add(spin); scene.add(globe);
+
+    var pts = [];
+    for(var lat=-85; lat<=85; lat+=4){
+      var n = Math.max(6,Math.round(92*Math.cos(lat*Math.PI/180)));
+      for(var i=0;i<n;i++){ var v = ll(lat,i/n*360-180,R); pts.push(v.x,v.y,v.z); }
+    }
+    var pg = new T.BufferGeometry(); pg.setAttribute('position',new T.Float32BufferAttribute(pts,3));
+    spin.add(new T.Points(pg,new T.PointsMaterial({color:ION,size:.022,transparent:true,opacity:.85,blending:T.AdditiveBlending,depthWrite:false})));
+    spin.add(new T.Mesh(new T.SphereGeometry(R*.985,48,48),new T.MeshBasicMaterial({color:0x060818})));
+
+    var ringMat = new T.LineBasicMaterial({color:VIO,transparent:true,opacity:.22});
+    [-45,0,45].forEach(function(la){
+      var a=[]; for(var j=0;j<=96;j++) a.push(ll(la,j/96*360-180,R*1.002));
+      spin.add(new T.Line(new T.BufferGeometry().setFromPoints(a),ringMat));
+    });
+
+    globe.add(new T.Mesh(new T.SphereGeometry(R*1.2,48,48),new T.ShaderMaterial({
+      side:T.BackSide,transparent:true,blending:T.AdditiveBlending,depthWrite:false,
+      uniforms:{c:{value:new T.Color(VIO)}},
+      vertexShader:'varying vec3 n;void main(){n=normalize(normalMatrix*normal);gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',
+      fragmentShader:'uniform vec3 c;varying vec3 n;void main(){float i=pow(max(0.,-n.z),1.6)*1.25;gl_FragColor=vec4(c*i,i);}'
+    })));
+
+    // Rajkot beacon
+    var home = ll(22.3039,70.8022,R*1.006), up = home.clone().normalize();
+    var core = new T.Mesh(new T.SphereGeometry(.035,16,16),new T.MeshBasicMaterial({color:FLA})); core.position.copy(home); spin.add(core);
+    var pulses = [0,.5].map(function(off){
+      var m = new T.Mesh(new T.RingGeometry(.05,.062,48),new T.MeshBasicMaterial({color:FLA,transparent:true,side:T.DoubleSide,depthWrite:false}));
+      m.position.copy(home); m.quaternion.setFromUnitVectors(new T.Vector3(0,0,1),up); m.userData.off = off; spin.add(m); return m;
+    });
+
+    // signal arcs leaving Rajkot
+    var arcMat = new T.LineBasicMaterial({color:ION,transparent:true,opacity:.4,blending:T.AdditiveBlending,depthWrite:false});
+    var sparks = [[40.7,-74],[51.5,-.1],[43.65,-79.4],[-33.9,151.2],[1.35,103.8],[25.2,55.3],[37.8,-122.4],[52.5,13.4]].map(function(d,k){
+      var b = ll(d[0],d[1],R*1.006), mid = home.clone().add(b).multiplyScalar(.5), dist = home.distanceTo(b);
+      mid.normalize().multiplyScalar(R*(1.05+dist*.3));
+      var curve = new T.QuadraticBezierCurve3(home,mid,b);
+      spin.add(new T.Line(new T.BufferGeometry().setFromPoints(curve.getPoints(64)),arcMat));
+      var s = new T.Mesh(new T.SphereGeometry(.024,10,10),new T.MeshBasicMaterial({color:0xffffff})); spin.add(s);
+      return {m:s,c:curve,o:k/8,v:.16+k%3*.04};
+    });
+
+    // starfield
+    var sv = [];
+    for(var q=0;q<1100;q++){
+      var r = 10+Math.random()*26, a1 = Math.random()*Math.PI*2, a2 = Math.acos(2*Math.random()-1);
+      sv.push(r*Math.sin(a2)*Math.cos(a1), r*Math.cos(a2), r*Math.sin(a2)*Math.sin(a1));
+    }
+    var sg = new T.BufferGeometry(); sg.setAttribute('position',new T.Float32BufferAttribute(sv,3));
+    var stars = new T.Points(sg,new T.PointsMaterial({color:0xeef0ff,size:.07,transparent:true,opacity:.75,depthWrite:false})); scene.add(stars);
+
+    var wide = true;
+    function size(){
+      var w = innerWidth, h = innerHeight; wide = w >= 900;
+      renderer.setSize(w,h,false); cam.aspect = w/h; cam.updateProjectionMatrix();
+    }
+    addEventListener('resize',size); size();
+
+    var e = heroE, px = 0, py = 0;
+    function draw(now){
+      var t = now/1000;
+      e += (heroE-e)*.08; px += (mx-px)*.05; py += (my-py)*.05;
+      var sc = wide ? 1 : .68;
+      globe.scale.setScalar(sc*(1+e*.15));
+      globe.position.set((wide?2.25:.5)*(1-e), (wide?-.05:.35)*(1-e), -3.2*e);
+      globe.rotation.x = .34 + py*.12;
+      spin.rotation.y = Math.PI+.25 + Math.sin(t*.14)*.55 + sp*5 + px*.25;
+      cam.position.x = px*.25; cam.position.y = -py*.18; cam.lookAt(0,0,0);
+      stars.rotation.y = t*.012 + sp*.9; stars.rotation.x = sp*.5; stars.position.z = sp*7;
+      pulses.forEach(function(m){ var k = (t*.55+m.userData.off)%1; m.scale.setScalar(1+k*5); m.material.opacity = 1-k; });
+      core.scale.setScalar(1+Math.sin(t*4)*.25);
+      sparks.forEach(function(s){ s.m.position.copy(s.c.getPoint((t*s.v+s.o)%1)); });
+      canvas.style.opacity = (wide?1:.42) - e*(wide?.62:.2);
+      renderer.render(scene,cam);
+      if(!still) requestAnimationFrame(draw);
+    }
+    requestAnimationFrame(draw);
+    if(still) addEventListener('resize',function(){requestAnimationFrame(draw)});
+  }catch(err){ canvas.hidden = true; }
+  }
+  function loadGL(){
+    var s = document.createElement('script');
+    s.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
+    s.onload = initGL; s.onerror = function(){ canvas.hidden = true; };
+    document.head.appendChild(s);
+  }
+  if(document.readyState === 'complete') loadGL(); else addEventListener('load', loadGL);
+
+  // contact form (Formspree)
+  var form = document.getElementById('contactForm'), msg = document.getElementById('formMsg'), sb = document.getElementById('submitBtn');
+  form.addEventListener('submit', function(ev){
+    ev.preventDefault();
+    sb.disabled = true; msg.className = 'mono'; msg.textContent = 'Sending...';
+    fetch(form.action, {method:'POST', body:new FormData(form), headers:{Accept:'application/json'}})
+      .then(function(r){ if(!r.ok) throw 0; form.reset(); msg.textContent = "Message sent. I'll reply within 24 hours."; })
+      .catch(function(){ msg.className = 'mono err'; msg.textContent = 'Could not send. Please message me on LinkedIn instead.'; })
+      .then(function(){ sb.disabled = false; });
+  });
+})();
+    </script>
+  </body>
+</html>
