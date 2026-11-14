@@ -10,7 +10,10 @@ I build modern websites and AI-powered web tools for businesses. Specializing in
 - **GitHub:** https://github.com/Snehal-Kanzariya
 - **LinkedIn:** https://linkedin.com/in/snehal-kanzariya
 - **Instagram:** https://www.instagram.com/snehal.kanzariya
-- **Location:** Rajkot, Gujarat, India
+- **Location:** India
+- **WhatsApp:** +91 81283 53355
+- **Experience:** 5+ years (many client projects are under NDA / HIPAA and not listed publicly)
+- **Services:** Business websites (from ₹20,000 / $299), landing pages (from ₹15,000 / $199), custom CRMs, AI tools & SaaS (from ₹50,000 / $500, varies by requirements)
 
 ## Projects
 

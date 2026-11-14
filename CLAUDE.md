@@ -2,7 +2,7 @@
 
 ## Who I Am
 
-Snehal Kanzariya. Frontend developer from Rajkot, Gujarat, India.
+Snehal Kanzariya. Frontend developer from India.
 I build modern websites and AI-powered web tools for businesses.
 React / TypeScript / Astro / TailwindCSS / Claude AI.
 
@@ -19,13 +19,12 @@ React / TypeScript / Astro / TailwindCSS / Claude AI.
 - Instagram: https://www.instagram.com/snehal.kanzariya
 - GitHub: https://github.com/Snehal-Kanzariya
 - LinkedIn: https://linkedin.com/in/snehal-kanzariya
-- Location: Rajkot, Gujarat, India
+- Location: India
 - Booking: https://cal.com/snehal-kanzariya (I will set this up)
 
 ## Pricing
 
-- Indian clients: ₹15,000 – ₹50,000
-- Foreign clients: $199 – $999
+- Business websites: ₹20,000 / $299 · Landing pages: ₹15,000 / $199 · CRMs, AI tools & SaaS: from ₹50,000 / $500 (varies by requirements)
 - Show both with toggle or mention
 
 ## Brand Voice / Tone
